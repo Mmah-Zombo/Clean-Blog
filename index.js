@@ -34,6 +34,7 @@ app.get('/post', (req, res) => {
 
 app.get('/posts/new', (req, res) => {
     // res.sendFile(path.resolve(__dirname, 'views/create.html'))
+    res.render('create');
 })
 
 app.post('/posts/store', (req, res) => {
