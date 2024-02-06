@@ -5,9 +5,14 @@ mongoose.connect('mongodb://localhost/my_database', { useNewUrlParser: true });
 let id = "658fa8a5b83b90290727930a";
 
 BlogPost.create({
-    title: 'Bad Weather',
-    body: 'The weather had been really dark lately. Many think it is due to harmattan, but it is not. It is due to heavy pollution in the atmosphere.'
-})
+    "title": "Social Awkwardness",
+    "body": "Being socially awkward is a bad thing. It limits your from connecting with people of value and hiders you from improving existing ones. I believe we should all spend time to build our social skills.",
+  },
+  {
+    "title": "Writing",
+    "body": "Write things down; whether it be emotions, ideas, conversations, aspirations, write them down, because they will come in handy one day.",
+  }
+  )
 .then(blogPost => console.log(blogPost))
 .catch(err => console.log(err));
 

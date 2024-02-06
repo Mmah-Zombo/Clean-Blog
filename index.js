@@ -19,8 +19,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/', async (req, res) => {
     // res.sendFile(path.resolve(__dirname, 'views/index.html'));
-    const blogPosts = await BlogPost.find({});
-    res.render('index', { blogPosts });
+    const blogposts = await BlogPost.find({});
+    res.render('index', { blogposts });
     // console.log(blogPosts);
 });
 
@@ -34,9 +34,10 @@ app.get('/contact', (req, res) => {
     res.render('contact');
 });
 
-app.get('/post', (req, res) => {
+app.get('/post/:id', async (req, res) => {
     // res.sendFile(path.resolve(__dirname, 'views/post.html'));
-    res.render('post');
+    const blogpost = await BlogPost.findById(req.params.id);
+    res.render('post', { blogpost });
 });
 
 app.get('/posts/new', (req, res) => {
