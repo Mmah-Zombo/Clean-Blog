@@ -17,6 +17,9 @@ app.use(express.static('public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+const fileUpload = require('express-fileupload');
+app.use(fileUpload());
+
 app.get('/', async (req, res) => {
     // res.sendFile(path.resolve(__dirname, 'views/index.html'));
     const blogposts = await BlogPost.find({});
@@ -47,10 +50,16 @@ app.get('/posts/new', (req, res) => {
 
 app.post('/posts/store', (req, res) => {
     // console.log(req.body);
-    BlogPost.create(req.body)
+    // console.log(req.files.image);
+    let image = req.files.image;
+    image.mv(path.resolve(__dirname, 'public/img', image.name))
+    .catch(err => console.log(err));
+    BlogPost.create({
+        ...req.body,
+        image: '/img/' + image.name
+    })
     .then(() => res.redirect('/'))
     .catch(err => console.log(err));
- 
 });
 
 app.listen(4000, () => {
