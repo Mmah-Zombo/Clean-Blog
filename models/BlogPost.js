@@ -9,7 +9,8 @@ const BlogPostSchema = new Schema({
     datePosted: {
         type: Date,
         default: new Date
-    }
+    },
+    image: String
 });
 
 // Creates a model our we will use to interact with the table
