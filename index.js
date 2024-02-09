@@ -3,7 +3,6 @@ const path = require('path');
 const mongoose = require('mongoose');
 const ejs = require('ejs');
 const bodyParser = require('body-parser');
-const BlogPost = require('./models/BlogPost');
 const homeController = require('./controllers/home');
 const newPostController = require('./controllers/newPost');
 const getPostController = require('./controllers/getPost');
