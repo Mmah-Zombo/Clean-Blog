@@ -3,7 +3,11 @@ const path = require('path');
 const mongoose = require('mongoose');
 const ejs = require('ejs');
 const bodyParser = require('body-parser');
-const BlogPost = require('./models/BlogPost.js');
+const BlogPost = require('./models/BlogPost');
+const homeController = require('./controllers/home');
+const newPostController = require('./controllers/newPost');
+const getPostController = require('./controllers/getPost');
+const storePostController = require('./controllers/storePost');
 
 const app = express(); // Remove 'new' from express()
 
@@ -28,47 +32,13 @@ const validateMiddleWare = (req, res, next) => {
 }
 app.use('/posts/store', validateMiddleWare);
 
-app.get('/', async (req, res) => {
-    // res.sendFile(path.resolve(__dirname, 'views/index.html'));
-    const blogposts = await BlogPost.find({});
-    res.render('index', { blogposts });
-    // console.log(blogPosts);
-});
+app.get('/', homeController);
 
-app.get('/about', (req, res) => {
-    // res.sendFile(path.resolve(__dirname, 'views/about.html'));
-    res.render('about');
-});
+app.get('/post/:id', getPostController);
 
-app.get('/contact', (req, res) => {
-    // res.sendFile(path.resolve(__dirname, 'views/contact.html'));
-    res.render('contact');
-});
+app.get('/posts/new', newPostController);
 
-app.get('/post/:id', async (req, res) => {
-    // res.sendFile(path.resolve(__dirname, 'views/post.html'));
-    const blogpost = await BlogPost.findById(req.params.id);
-    res.render('post', { blogpost });
-});
-
-app.get('/posts/new', (req, res) => {
-    // res.sendFile(path.resolve(__dirname, 'views/create.html'))
-    res.render('create');
-});
-
-app.post('/posts/store', (req, res) => {
-    // console.log(req.body);
-    // console.log(req.files.image);
-    let image = req.files.image;
-    image.mv(path.resolve(__dirname, 'public/img', image.name))
-    .catch(err => console.log(err));
-    BlogPost.create({
-        ...req.body,
-        image: '/img/' + image.name
-    })
-    .then(() => res.redirect('/'))
-    .catch(err => console.log(err));
-});
+app.post('/posts/store', storePostController);
 
 app.listen(4000, () => {
     console.log("Server started on port 4000");
