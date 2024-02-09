@@ -7,6 +7,7 @@ const homeController = require('./controllers/home');
 const newPostController = require('./controllers/newPost');
 const getPostController = require('./controllers/getPost');
 const storePostController = require('./controllers/storePost');
+const validateMiddleWare = require('./middleware/validationMiddleware');
 
 const app = express(); // Remove 'new' from express()
 
@@ -23,12 +24,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const fileUpload = require('express-fileupload');
 app.use(fileUpload());
 
-const validateMiddleWare = (req, res, next) => {
-    if (req.files == null || req.body.title == null || req.body.body == null) {
-        return res.redirect('/posts/new');
-    }
-    next();
-}
 app.use('/posts/store', validateMiddleWare);
 
 app.get('/', homeController);
