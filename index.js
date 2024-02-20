@@ -9,6 +9,7 @@ const getPostController = require('./controllers/getPost');
 const storePostController = require('./controllers/storePost');
 const newUserController = require('./controllers/newUserController');
 const storeUserController = require('./controllers/storeUserController');
+const loginController = require('./controllers/loginController');
 const validateMiddleWare = require('./middleware/validationMiddleware');
 
 const app = express(); // Remove 'new' from express()
@@ -39,6 +40,8 @@ app.post('/posts/store', storePostController);
 app.get('/auth/register', newUserController);
 
 app.post('/users/register', storeUserController);
+
+app.get('/auth/login', loginController);
 
 app.listen(4000, () => {
     console.log("Server started on port 4000");
