@@ -11,7 +11,9 @@ const newUserController = require('./controllers/newUserController');
 const storeUserController = require('./controllers/storeUserController');
 const loginController = require('./controllers/loginController');
 const loginUserController = require('./controllers/userLogin');
+const expressSession = require('express-session');
 const validateMiddleWare = require('./middleware/validationMiddleware');
+const authMiddleware = require('./middleware/authMiddleware');
 
 const app = express(); // Remove 'new' from express()
 
@@ -30,13 +32,17 @@ app.use(fileUpload());
 
 app.use('/posts/store', validateMiddleWare);
 
+app.use(expressSession({
+    secret: 'keyboard cat'
+}));
+
 app.get('/', homeController);
 
 app.get('/post/:id', getPostController);
 
-app.get('/posts/new', newPostController);
+app.get('/posts/new', authMiddleware, newPostController);
 
-app.post('/posts/store', storePostController);
+app.post('/posts/store',authMiddleware, storePostController);
 
 app.get('/auth/register', newUserController);
 

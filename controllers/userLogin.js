@@ -10,6 +10,7 @@ module.exports = (req, res) => {
             bycrypt.compare(password, user.password)
             .then(same => {
                 if (same) {
+                    req.session.userId = user._id;
                     res.redirect('/');
                 } else {
                     res.redirect('/auth/login');
