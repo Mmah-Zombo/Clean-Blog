@@ -2,7 +2,7 @@ const bycrypt = require('bcrypt');
 const User = require('../models/User');
 
 module.exports = (req, res) => {
-    const [username, password] = req.dody;
+    const {username, password} = req.body;
 
     User.findOne({username: username})
     .then(user => {
@@ -12,10 +12,12 @@ module.exports = (req, res) => {
                 if (same) {
                     res.redirect('/');
                 } else {
-                    res.redirect('auth/login');
+                    res.redirect('/auth/login');
                 }
             })
             .catch(err => { throw err })
+        } else {
+            res.redirect('/auth/login');
         }
     })
     .catch(err => {
