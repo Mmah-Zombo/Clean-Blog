@@ -63,6 +63,8 @@ app.post('/users/login', redirectIfAuthenticated, loginUserController);
 
 app.get('/auth/logout', logoutController);
 
+app.use((req, res) => res.render('notFound'));
+
 app.listen(4000, () => {
     console.log("Server started on port 4000");
 });
