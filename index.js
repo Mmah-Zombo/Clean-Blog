@@ -11,6 +11,7 @@ const newUserController = require('./controllers/newUserController');
 const storeUserController = require('./controllers/storeUserController');
 const loginController = require('./controllers/loginController');
 const loginUserController = require('./controllers/userLogin');
+const logoutController = require('./controllers/logoutController');
 const expressSession = require('express-session');
 const validateMiddleWare = require('./middleware/validationMiddleware');
 const authMiddleware = require('./middleware/authMiddleware');
@@ -59,6 +60,8 @@ app.post('/users/register', redirectIfAuthenticated, storeUserController);
 app.get('/auth/login', redirectIfAuthenticated, loginController);
 
 app.post('/users/login', redirectIfAuthenticated, loginUserController);
+
+app.get('/auth/logout', logoutController);
 
 app.listen(4000, () => {
     console.log("Server started on port 4000");
