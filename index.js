@@ -3,6 +3,7 @@ const path = require('path');
 const mongoose = require('mongoose');
 const ejs = require('ejs');
 const bodyParser = require('body-parser');
+const flash = require('connect-flash');
 const homeController = require('./controllers/home');
 const newPostController = require('./controllers/newPost');
 const getPostController = require('./controllers/getPost');
@@ -43,7 +44,9 @@ global.loggedIn = null;
 app.use("*", (req, res, next) => {
     loggedIn = req.session.userId;
     next();
-})
+});
+
+app.use(flash());
 
 app.get('/', homeController);
 
