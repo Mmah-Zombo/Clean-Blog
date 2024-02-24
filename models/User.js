@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const Schema = mongoose.Schema;
+const uniqueValidator = require('mongoose-unique-validator');
 
 const UserSchema = new Schema({
     username: {
@@ -12,7 +13,9 @@ const UserSchema = new Schema({
         type: String,
         required: true
     }
-})
+});
+
+UserSchema.plugin(uniqueValidator);
 
 // Using arrow function with 'next' won't work in this case
 UserSchema.pre('save', function(next) {
@@ -22,7 +25,7 @@ UserSchema.pre('save', function(next) {
         user.password = hash;
         next();
     })
-})
+});
 
 const User = mongoose.model('User', UserSchema);
 module.exports = User;
