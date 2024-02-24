@@ -33,13 +33,13 @@
                         <div class="my-5">
                             <form action="/users/register" method="POST"  id="contactForm" enctype="multipart/form-data">
                                 <div class="form-floating">
-                                    <input class="form-control" id="username" name="username" type="text" placeholder="User Name" data-sb-validations="required" />
+                                    <input class="form-control" id="username" name="username" type="text" placeholder="User Name" value="<%= username %>" data-sb-validations="required" />
                                     <label for="username">User Name</label>
                                     <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
                                 </div>
                                 
                                 <div class="form-floating">
-                                    <input class="form-control" id="password" name="password" type="text" placeholder="Password" data-sb-validations="required" />
+                                    <input class="form-control" id="password" name="password" type="text" placeholder="Password" value="<%= password %>" data-sb-validations="required" />
                                     <label for="password">Password</label>
                                     <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
                                 </div>
