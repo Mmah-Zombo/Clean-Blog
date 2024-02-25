@@ -10,5 +10,9 @@ module.exports = (req, res) => {
         image: '/img/' + image.name
     })
     .then(() => res.redirect('/'))
-    .catch(err => console.log(err));
+    .catch(err => {
+        const validationErrors = Object.keys(err.errors).map(key => err.errors[key].message);
+        req.flash('validationErrors', validationErrors);
+        res.redirect('/posts/new');
+    });
 }

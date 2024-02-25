@@ -3,14 +3,23 @@ const Schema = mongoose.Schema;
 
 // Creates a new schema(table)
 const BlogPostSchema = new Schema({
-    title: String,
-    body: String,
+    title: {
+        type: String,
+        required: [true, "Add a post title"]
+    },
+    body: {
+        type: String,
+        required: [true, "Blog post must have a body"]
+    },
     username: String,
     datePosted: {
         type: Date,
         default: new Date
     },
-    image: String
+    image: {
+        type: String,
+        required: [true, "Please upload an image"]
+    },
 });
 
 // Creates a model our we will use to interact with the table

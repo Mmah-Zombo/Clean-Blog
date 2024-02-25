@@ -33,11 +33,13 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const fileUpload = require('express-fileupload');
 app.use(fileUpload());
 
-app.use('/posts/store', validateMiddleWare);
 
 app.use(expressSession({
     secret: 'keyboard cat'
 }));
+
+app.use(flash());
+app.use('/posts/store', validateMiddleWare);
 
 global.loggedIn = null;
 
@@ -46,7 +48,6 @@ app.use("*", (req, res, next) => {
     next();
 });
 
-app.use(flash());
 
 app.get('/', homeController);
 
