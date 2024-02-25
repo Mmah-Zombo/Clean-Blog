@@ -23,16 +23,23 @@
             <div class="container px-4 px-lg-5">
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-md-10 col-lg-8 col-xl-7">
+                        <% if(errors != null && errors.length > 0) { %>
+                            <ul class="list-group">
+                            <% for (var i = 0; i < errors.length; i++) { %>
+                                <li class="list-group-item list-group-item-danger"><%= errors[i] %></li>
+                            <% } %>
+                            </ul>
+                        <% } %>
                         <div class="my-5">
                             <form action="/users/login" method="POST"  id="contactForm" enctype="multipart/form-data">
                                 <div class="form-floating">
-                                    <input class="form-control" id="username" name="username" type="text" placeholder="User Name" data-sb-validations="required" />
+                                    <input class="form-control" id="username" name="username" type="text" placeholder="User Name" value="<%= username %>" data-sb-validations="required" />
                                     <label for="username">User Name</label>
                                     <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
                                 </div>
                                 
                                 <div class="form-floating">
-                                    <input class="form-control" id="password" name="password" type="text" placeholder="Password" data-sb-validations="required" />
+                                    <input class="form-control" id="password" name="password" type="text" placeholder="Password" value="<%= password %>" data-sb-validations="required" />
                                     <label for="password">Password</label>
                                     <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
                                 </div>
