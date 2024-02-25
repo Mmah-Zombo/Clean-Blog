@@ -7,7 +7,8 @@ module.exports = (req, res) => {
     .catch(err => console.log(err));
     BlogPost.create({
         ...req.body,
-        image: '/img/' + image.name
+        image: '/img/' + image.name,
+        userid: req.session.userId
     })
     .then(() => res.redirect('/'))
     .catch(err => {

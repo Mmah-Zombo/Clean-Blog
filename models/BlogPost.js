@@ -11,7 +11,11 @@ const BlogPostSchema = new Schema({
         type: String,
         required: [true, "Blog post must have a body"]
     },
-    username: String,
+    userid: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
+    },
     datePosted: {
         type: Date,
         default: new Date
