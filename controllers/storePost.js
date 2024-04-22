@@ -10,7 +10,11 @@ module.exports = (req, res) => {
         image: '/img/' + image.name,
         userid: req.session.userId
     })
-    .then(() => res.redirect('/'))
+    .then(() => {
+        const successMessage = "Posted successfully";
+        req.flash('successMessage', successMessage);
+        res.redirect('/');
+    })
     .catch(err => {
         const validationErrors = Object.keys(err.errors).map(key => err.errors[key].message);
         req.flash('validationErrors', validationErrors);
