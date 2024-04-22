@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('layouts/header'); -%>
+    <body>
+        <!-- Navigation-->
+        <%- include('layouts/nav'); -%>
+        <!-- Page Header-->
+        <header class="masthead" style="background-image: url('/assets/img/home-bg.jpg')">
+            <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="site-heading">
+                            <h1>My Posts</h1>
+                            <span class="subheading">Keep Posting.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- Main Content-->
+        <div class="container px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <% if(successMessage != null && successMessage.length > 0) { %>
+                    <ul class="list-group">
+                        <li class="list-group-item list-group-item-success"><%= successMessage %></li>
+                    </ul>
+                <% } %>
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                    <% for (var i = blogposts.length - 1; i >= 0; i--) { %>
+                        <div class="post-preview">
+                            <a href="/post/<%= blogposts[i]._id %>">
+                                <h2 class="post-title"><%= blogposts[i].title %></h2>
+                                <h3 class="post-subtitle"><%- blogposts[i].body %></h3>
+                            </a>
+                            <p class="post-meta">
+                                Posted by
+                                <a href="#!"><%= blogposts[i].userid.username %></a> on
+                                <%= blogposts[i].datePosted.toDateString() %>
+                            </p>
+                        </div>
+
+                        <!-- Divider-->
+                        <hr class="my-4" />
+                    <% } %>
+                    
+                </div>
+            </div>
+        </div>
+        <!-- Footer-->
+        <%- include('layouts/footer'); -%>
+        <!-- Bootstrap core JS-->
+        <%- include('layouts/scripts'); -%>
+    </body>
+</html>

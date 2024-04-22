@@ -8,6 +8,7 @@ const homeController = require('./controllers/home');
 const newPostController = require('./controllers/newPost');
 const getPostController = require('./controllers/getPost');
 const storePostController = require('./controllers/storePost');
+const userPostsController = require('./controllers/userPostsController');
 const newUserController = require('./controllers/newUserController');
 const storeUserController = require('./controllers/storeUserController');
 const loginController = require('./controllers/loginController');
@@ -55,7 +56,9 @@ app.get('/post/:id', getPostController);
 
 app.get('/posts/new', authMiddleware, newPostController);
 
-app.post('/posts/store',authMiddleware, storePostController);
+app.post('/posts/store', authMiddleware, storePostController);
+
+app.get('/user/posts', authMiddleware, userPostsController);
 
 app.get('/auth/register', redirectIfAuthenticated, newUserController);
 
