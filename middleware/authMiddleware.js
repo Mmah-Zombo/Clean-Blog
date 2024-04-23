@@ -4,7 +4,7 @@ module.exports = (req, res, next) => {
     User.findById(req.session.userId)
     .then(user => {
         if (!user) {
-            return res.redirect('/');
+            return res.redirect('/auth/login');
         }
         next();
     })
