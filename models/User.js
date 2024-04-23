@@ -15,7 +15,7 @@ const UserSchema = new Schema({
     }
 });
 
-UserSchema.plugin(uniqueValidator);
+UserSchema.plugin(uniqueValidator, { message: 'Sorry, {PATH} already taken.' });
 
 // Using arrow function with 'next' won't work in this case
 UserSchema.pre('save', function(next) {
