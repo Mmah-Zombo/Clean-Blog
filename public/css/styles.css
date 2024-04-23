@@ -10769,6 +10769,7 @@ header.masthead .post-heading .meta a {
 .post-preview {
   display: flex;
   align-items: start;
+  margin-top: 2rem;
 }
 
 .post-preview > img {
@@ -10782,6 +10783,11 @@ header.masthead .post-heading .meta a {
 .post-preview > div > a {
   color: #212529;
 }
+
+.column > p {
+  margin-top: 0rem;
+}
+
 .post-preview > div > a:focus, .post-preview > div > a:hover {
   text-decoration: none;
   color: #0085A1;
