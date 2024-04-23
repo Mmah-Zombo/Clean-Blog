@@ -28,15 +28,18 @@
                 <div class="col-md-10 col-lg-8 col-xl-7">
                     <% for (var i = blogposts.length - 1; i >= 0; i--) { %>
                         <div class="post-preview">
-                            <a href="/post/<%= blogposts[i]._id %>">
-                                <h2 class="post-title"><%= blogposts[i].title %></h2>
-                                <h3 class="post-subtitle"><%- blogposts[i].body %></h3>
-                            </a>
-                            <p class="post-meta">
-                                Posted by
-                                <a href="#!"><%= blogposts[i].userid.username %></a> on
-                                <%= blogposts[i].datePosted.toDateString() %>
-                            </p>
+                            <img src="<%= blogposts[i].image %>" alt="blog image" width="300" height="300">
+                            <div>
+                                <a href="/post/<%= blogposts[i]._id %>">
+                                    <h2 class="post-title"><%= blogposts[i].title %></h2>
+                                    <h3 class="post-subtitle"><%- blogposts[i].body %></h3>
+                                </a>
+                                <p class="post-meta">
+                                    Posted by
+                                    <a href="#!"><%= blogposts[i].userid.username %></a> on
+                                    <%= blogposts[i].datePosted.toDateString() %>
+                                </p>
+                            </div>
                         </div>
 
                         <!-- Divider-->
