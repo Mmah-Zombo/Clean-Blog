@@ -10794,12 +10794,11 @@ header.masthead .post-heading .meta a {
 }
 .post-preview > div > a > .post-title {
   font-size: 1.875rem;
-  margin-top: 1.875rem;
-  margin-bottom: 0rem;
+  margin-top: 1.rem;
+  margin-bottom: .2rem;
 }
 .post-preview > div > a > .post-subtitle {
   font-weight: 300;
-  margin-bottom: 0.625rem;
 }
 .post-preview > div > .post-meta {
   font-size: 1.125rem;
@@ -10809,6 +10808,33 @@ header.masthead .post-heading .meta a {
 }
 .post-preview > div > .post-meta > a {
   text-decoration: none;
+}
+.post-preview > div > .delete {
+  background-color: #000;
+  color: #dc3545;
+  padding: 0 0.7rem;
+  width: fit-content;
+  font-size: 16px;
+  border-radius: .2rem;
+  margin-top: .4rem;
+}
+
+.post-preview > div > .delete a {
+  color: #dc3545;
+}
+
+.post-preview > div > .delete:hover {
+  background-color: #dc3545;
+  color: #000;
+  cursor: pointer;
+}
+
+.post-preview > div > .delete a:hover {
+  color: #000;
+}
+
+.post-preview p {
+  margin: 0;
 }
 
 /* Mobile View */

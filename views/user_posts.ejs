@@ -39,6 +39,9 @@
                                     <a href="#!"><%= blogposts[i].userid.username %></a> on
                                     <%= blogposts[i].datePosted.toDateString() %>
                                 </p>
+                                <% if (loggedIn && (loggedIn == blogposts[i].userid._id)) { %>
+                                    <div class="delete"><a href="/posts/delete/<%= blogposts[i]._id %>"> DELETE</a></div>
+                                <% } %>
                             </div>
                         </div>
 
